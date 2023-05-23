@@ -2,6 +2,10 @@ const Sequelize = require('sequelize');
 const sequelize = require('../config/tddDB.js');
 
 const Livre = sequelize.define('livre', {
+  isbn: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
   titre: {
     type: Sequelize.STRING,
     allowNull: false
@@ -10,9 +14,13 @@ const Livre = sequelize.define('livre', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  annee_publication: {
-    type: Sequelize.INTEGER,
+  editeur: {
+    type: Sequelize.STRING,
     allowNull: false
+  },
+  format: {
+    type: Sequelize.ENUM,
+    values: [Format.BROCHE, Format.GRANDFORMAT, Format.POCHE]
   }
 });
 

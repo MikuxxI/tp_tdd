@@ -1,14 +1,16 @@
+const axios = require('axios');
 
-  const axios = require('axios');
+const url = (url) => `http://127.0.0.1:3000${url}`;
 
-  const url = 'http://127.0.0.1:3000/router';
-  
-  describe('The router', () => {
-    test('The get route', async () => {
-      const res = await axios.get(url)
+beforeEach(() => {
+  await Livre.
+});
 
-      expect(res).toBeTruthy()
+describe('Librairie', () => {
+  describe('creation', () => {
+    test('error', async () => {
+      const res = await axios.post(url('/livre'))
       expect(res.status).toBe(200)
-      expect(res.data).toEqual('Hello World!')
     })
   })
+})
