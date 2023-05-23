@@ -5,6 +5,7 @@ const express = require('express')
 const router = express.Router()
 const Livre = require('../models/Livre');
 const message = require('../global/message');
+const Format = require('../models/Format');
 
 router.post('/',
   body('isbn').isString(),
@@ -12,6 +13,7 @@ router.post('/',
   body('auteur').isString(),
   body('editeur').isString(),
   body('format').isString(),
+  body('format').isIn([Format.BROCHE, Format.GRANDFORMAT, Format.POCHE]),
 async (req, res) => {
   const errors = validationResult(req);
 
