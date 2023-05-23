@@ -1,9 +1,27 @@
+
+const { body, validationResult } = require('express-validator');
+
 const express = require('express')
 const router = express.Router()
 const Livre = require('../models/Livre');
 const message = require('../global/message');
 
-router.post('/', async (req, res) => {
+router.post('/',
+  body('isbn').isString(),
+  body('titre').isString(),
+  body('auteur').isString(),
+  body('editeur').isString(),
+  body('format').isString(),
+async (req, res) => {
+  const errors = validationResult(req);
+
+  // validation
+  if (!errors.isEmpty()) {
+    return res.status(400).json(
+      { errors: errors.array() }
+    );
+  }
+
   await Livre.create(req.body);
   return res.status(200).send(message.succesInsert);
 });
