@@ -14,5 +14,15 @@ describe('Librairie', () => {
       const newLivre = await Livre.findOne({ where: { isbn: livreSeeds.isbn10.isbn } });
       expect(newLivre).toMatchObject(livreSeeds.isbn10);
     })
+
+    test('validator isbn body type', async () => {
+      try {
+        await axios.post(url('/livre'), {...livreSeeds.isbn10, isbn: 123 })
+      } catch (error) {
+        expect(error.response.data).toBeTruthy()
+        expect(error.response.status).toBe(400);      
+        expect(error.response.data.errors[0].msg).toEqual(message.invalidType)
+      }
+    })
   })
 })
