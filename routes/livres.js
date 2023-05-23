@@ -1,8 +1,11 @@
 const express = require('express')
 const router = express.Router()
+const Livre = require('../models/Livre');
+const message = require('../global/message');
 
-router.post('/', (req, res) => {
-  res.status(200).send('Hello World!')
+router.post('/', async (req, res) => {
+  await Livre.create(req.body);
+  return res.status(200).send(message.succesInsert);
 });
 
 module.exports = router;
