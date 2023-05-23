@@ -9,3 +9,5 @@ const livresSeeds = {
         format: Format.BROCHE,
     }
 }
+
+module.exports = livresSeeds;

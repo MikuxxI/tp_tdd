@@ -20,7 +20,7 @@ const Livre = sequelize.define('livre', {
   },
   format: {
     type: Sequelize.ENUM,
-    values: [Format.BROCHE, Format.GRANDFORMAT, Format.POCHE]
+    values: ['Poche', 'Broché', 'Grand format'],
   }
 });
 

@@ -1,5 +1,5 @@
-const Format = {
-    POCHE: 'Poche',
-    BROCHE: 'Broché',
-    GRANDFORMAT: 'Grand format',
-  };
+module.exports = {
+  POCHE: 'Poche',
+  BROCHE: 'Broché',
+  GRANDFORMAT: 'Grand format',
+};

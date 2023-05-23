@@ -2,7 +2,7 @@ module.exports = {
     test: {
       username: 'root',
       password: 'Not24get',
-      database: 'tdd',
+      database: 'tptdd',
       host: 'localhost',
       dialect: 'mysql'
     },
