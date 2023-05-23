@@ -24,5 +24,15 @@ describe('Librairie', () => {
         expect(error.response.data.errors[0].msg).toEqual(message.invalidType)
       }
     })
+
+    test('validator isbn as good value', async () => {
+      try {
+        await axios.post(url('/livre'), {...livreSeeds.isbn10, isbn: 'BD' })
+      } catch (error) {
+        expect(error.response.data).toBeTruthy()
+        expect(error.response.status).toBe(400);      
+        expect(error.response.data.errors[0].msg).toEqual(message.invalidType)
+      }
+    })
   })
 })
