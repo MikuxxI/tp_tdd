@@ -41,22 +41,13 @@ async (req, res) => {
   }
 });
 
-// router.get('/', async (req, res) => {
-//   const errors = validationResult(req);
-
-//   // validation
-//   if (!errors.isEmpty()) {
-//     return res.status(400).json(
-//       { errors: errors.array() }
-//     );
-//   }
-
-//   try {
-//     await Livre.create(req.body);
-//     return res.status(200).send(message.succesInsert);
-//   } catch (error) {
-//     return res.status(500).json({ error: message.errorInsertion });
-//   }
-// });
+router.get('/', async (req, res) => {
+  try {
+    const livres = await Livre.findAll();
+    return res.status(200).send(livres);
+  } catch (error) {
+    return res.status(500).json({ error: message.errorInsertion });
+  }
+});
 
 module.exports = router;
