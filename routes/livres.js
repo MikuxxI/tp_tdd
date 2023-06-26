@@ -41,10 +41,11 @@ async (req, res) => {
   }
 });
 
-router.get('/', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    const livres = await Livre.findAll();
-    return res.status(200).send(livres);
+    const livre = await Livre.findByPk(req.params.id);
+    
+    return res.status(200).send(livre);
   } catch (error) {
     return res.status(500).json({ error: message.errorInsertion });
   }
