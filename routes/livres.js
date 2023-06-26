@@ -24,8 +24,12 @@ async (req, res) => {
     );
   }
 
-  await Livre.create(req.body);
-  return res.status(200).send(message.succesInsert);
+  try {
+    await Livre.create(req.body);
+    return res.status(200).send(message.succesInsert);
+  } catch (error) {
+    return res.status(500).json({ error: message.errorInsertion });
+  }
 });
 
 module.exports = router;
