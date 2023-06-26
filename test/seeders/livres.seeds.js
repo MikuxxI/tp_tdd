@@ -7,6 +7,13 @@ const livresSeeds = {
         auteur: 'Douglas Kennedy',
         editeur: 'Chloé Royer',
         format: Format.BROCHE,
+    },
+    isbn13: {
+        isbn: '978-3-16-148410-0',
+        titre: 'ISBN 13',
+        auteur: 'Poupion Mickael',
+        editeur: 'Poupion Mickael',
+        format: Format.GRANDFORMAT,
     }
 }
 

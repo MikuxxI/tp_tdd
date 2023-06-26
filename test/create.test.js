@@ -45,6 +45,28 @@ describe('Librairie', () => {
       try {
         await axios.post(url('/livre'), {...livreSeeds.isbn10, isbn: 'BD' })
       } catch (error) {
+        console.debug('error', error);
+        expect(error.response.data).toBeTruthy()
+        expect(error.response.status).toBe(400);      
+        expect(error.response.data.errors[0].msg).toEqual(message.invalidType)
+      }
+    })
+
+    test.only('ISBN 10 not Valide', async () => {
+      try {
+        await axios.post(url('/livre'), { ...livreSeeds.isbn10, isbn: '2714493231' })
+      } catch (error) {
+        console.debug(error)
+        expect(error.response.data).toBeTruthy()
+        expect(error.response.status).toBe(400);      
+        expect(error.response.data.errors[0].msg).toEqual(message.invalidType)
+      }
+    })
+
+    test('ISBN 13 not Valide', async () => {
+      try {
+        await axios.post(url('/livre'), { ...livreSeeds.isbn10, isbn: '978-3-16-148410-1' })
+      } catch (error) {
         expect(error.response.data).toBeTruthy()
         expect(error.response.status).toBe(400);      
         expect(error.response.data.errors[0].msg).toEqual(message.invalidType)
