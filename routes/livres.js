@@ -41,10 +41,22 @@ async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
+    const livres = await Livre.findAll();
+    return res.status(200).send(livres);
+  } catch (error) {
+    return res.status(500).json({ error: message.errorInsertion });
+  }
+});
+
+router.get(':id', async (req, res) => {
+  try {
+    console.debug('req', req.params);
     const livre = await Livre.findByPk(req.params.id);
-    
+    if (!livre) {
+      return res.status(404);
+    }
     return res.status(200).send(livre);
   } catch (error) {
     return res.status(500).json({ error: message.errorInsertion });
