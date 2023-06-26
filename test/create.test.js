@@ -43,7 +43,6 @@ describe('Librairie', () => {
       try {
         await axios.post(url('/livre'), livreSeeds.isbn10)
       } catch (error) {
-        expect(e.response.status).toBeGreaterThanOrEqual(400);
         expect(error.response.status).toBe(400);      
         expect(error.response.data).toBeTruthy()
         expect(error.response.data.errors[0].msg).toEqual(message.invalidType)
