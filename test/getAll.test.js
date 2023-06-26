@@ -1,20 +1,28 @@
 const axios = require('axios');
 const livreSeeds = require('./seeders/livres.seeds.js');
 const Livre = require('../models/Livre');
-const message = require('../global/message.js');
 
 const url = (url) => `http://127.0.0.1:3000${url}`;
 
-beforeAll(async () => {
+beforeEach(async () => {
   await Livre.destroy({ where: {} });
 });
 
-describe('Librairie', () => {
-  // describe('first test', ()=> {
-  //   expect(1).toBe(2);
-  // })
+describe('Fonctionnement de l\'API', () => {
+  // describe('test Erreur', ()=> {
+    //   expect(1).toBe(2);
+    // })
+    
+    test('récupère la list des livres', async ()=> {
+    await Livre.bulkCreate([
+      livreSeeds.isbn10,
+      livreSeeds.isbn13
+    ]);
+    const res = await axios.get(url('/livre'));
 
-  describe('first test', ()=> {
-    expect(1).toBe(2);
+    expect(res.data).toMatchObject([
+      livreSeeds.isbn10,
+      livreSeeds.isbn13
+    ]);
   })
 })
