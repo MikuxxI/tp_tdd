@@ -13,7 +13,7 @@ describe('Fonctionnement de l\'API', () => {
     //   expect(1).toBe(2);
     // })
     
-    test('récupère la list des livres', async ()=> {
+  test('récupère la list des livres', async ()=> {
     await Livre.bulkCreate([
       livreSeeds.isbn10,
       livreSeeds.isbn13
@@ -25,4 +25,13 @@ describe('Fonctionnement de l\'API', () => {
       livreSeeds.isbn13
     ]);
   })
+
+  test('Ne trouve pas de livre', async () => {
+    try {
+      await axios.get(url('/livres'));
+    } catch (error) {
+      expect(error.response.status).toBe(404);
+      expect(error.response.statusText).toBe(message.notFound);
+    }
+  });
 })
