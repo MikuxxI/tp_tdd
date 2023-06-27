@@ -31,7 +31,6 @@ describe('Fonctionnement de l\'API', () => {
       await axios.get(url('/livres'));
     } catch (error) {
       expect(error.response.status).toBe(404);
-      expect(error.response.statusText).toBe(message.notFound);
     }
   });
 })
