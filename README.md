@@ -1,5 +1,7 @@
 # tp_tdd
-# tp_tdd
 
+Compréhension de l''ordre de la mise en place des test :
 
-https://codingpr.com/test-your-express-api-with-jest/
+Test -> API -> Refacto
+
+Mais impossible de mettre en place sequelize-mock
